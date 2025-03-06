@@ -1,10 +1,10 @@
-package dev.ku.ku_routing
+package dev.ku.routing
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class KuRoutingApplicationTests {
+class RoutingApplicationTests {
 
 	@Test
 	fun contextLoads() {
