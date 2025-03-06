@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+#  prisma_api:
+#    container_name: prisma_api
+#    build: .
+#    ports:
+#      - ${PORT}:${PORT}
+#    env_file: .env
+#    restart: always
+#    depends_on:
+#      - database
+#    environment:
+#      MYSQL_HOST: database
+#      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+#      MYSQL_USER: '${MYSQL_USER}'
+#      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+#      MYSQL_PORT: 3307
+#    networks:
+#      - spring-network
+  database:
+    container_name: routing-db
+    image: mariadb:10.6.4-focal
+    restart: unless-stopped
+    ports:
+      - 3307:3306
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - spring-network
+#  proxy:
+#    image: nginx:1.27
+#    restart: unless-stopped
+#    ports:
+#      - 9000:4001
+#    volumes:
+#      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+#    networks:
+#      - spring-network
+#    depends_on:
+#      - database
+volumes:
+  db-data:
+
+networks:
+  spring-network:
+    driver: bridge
+  
