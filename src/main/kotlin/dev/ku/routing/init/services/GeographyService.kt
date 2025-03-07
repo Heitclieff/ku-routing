@@ -50,7 +50,7 @@ class GeographyService(
                 totalElements = result.totalElements,
                 content = result.content
             )
-        }.getOrElse { e ->
+        }.getOrElse {
             PaginationModel(
                 status = 500,
                 message = "ดึงข้อมูลไม่สำเร็จ",
